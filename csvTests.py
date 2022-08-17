@@ -3,8 +3,8 @@ from lib2to3.pgen2.token import NEWLINE
 import os
 
 def csvHandler(path, newzeile):
-    with open(path) as csvfile:
-        csvreader = csv.reader(csvfile, newline='')
+    with open(path, "r", newline='') as csvfile:
+        csvreader = csv.reader(csvfile)
         header = []
         header = next(csvreader) #returned die erste Zeile und springt zur nächsten
         datacore = []
@@ -12,13 +12,16 @@ def csvHandler(path, newzeile):
             datacore.append(row)
     print("header:", header)
     print("daten:", datacore)
-    if newzeile != False or newzeile != '':
-        csvwriter = csv.writer(csvfile)
-        teile = newzeile.split(' ')
-        neueAttribute = []
-        for teil in teile:
-            neueAttribute.append(teil)
-        csvwriter.writerow(neueAttribute)
+    if newzeile:
+        with open(path, "a", newline='') as csvfile:
+            csvwriter = csv.writer(csvfile)
+            teile = newzeile.split(' ')
+            neueAttribute = ['\n']
+            for teil in teile:
+                print(teil)
+                neueAttribute.append(teil)
+            print(neueAttribute)
+            csvwriter.writerow(neueAttribute)
         
     return "it worked"
 
