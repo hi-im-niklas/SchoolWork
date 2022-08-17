@@ -38,10 +38,3 @@ elif(choiceIndex == 3):
     print(3)
 
 input()
-
-
-
-
-
-
-
