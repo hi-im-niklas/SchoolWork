@@ -17,9 +17,12 @@ def GetFileContentInformation(path):
                 datacore.append(row)
             return datacore
     
-def ManipulateFileContents(path):
-    
-    
+def ManipulateFileContents(path, data):
+    with open(path, "a+", newline='') as csvfile:
+        dialect = csv.Sniffer().sniff(csvfile.read(1024))
+        csvwriter = csv.writer(csvfile, dialect=dialect)
+        csvwriter.writerow(data)
+        
           
 pfad = input("Geben Sie den Dateipfad an:")            
 
