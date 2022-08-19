@@ -4,6 +4,9 @@ import os
 def GetFileContent(path):
     with open(path, newline='') as csvfile:
         dialect = csv.Sniffer().sniff(csvfile.read(1024))
+        print(dialect)
+        possible_header = csv.Sniffer().has_header(csvfile.read(1024))
+        print(possible_header)
         csvfile.seek(0)
         reader = csv.reader(csvfile, dialect)
         return reader
@@ -31,7 +34,6 @@ if(choiceIndex == 0):
     ShowContent(csvReader)
 elif(choiceIndex == 1):
     print(1)
-
 elif(choiceIndex == 2):
     print(2)
 elif(choiceIndex == 3):
